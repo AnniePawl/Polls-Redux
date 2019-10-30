@@ -16,6 +16,12 @@
 -  Make sure you are in same directory as manage.py
 - `$python3 manage.py startapp app name`
 
+6. Creates tables in database
+- `$python manage.py migrate`
+
+### Migrate 
+Looks a installed_apps settings and creates any necessary database tables according to database migration. 
+Migrations are entirely derived from models
 
 ### Projects vs Apps 
 **Project:** Collection of configuration and apps for a particular website. Can contain multiple apps. <br>
@@ -61,3 +67,8 @@ URL delcarations for project. Table of contents
   
 # Views 
 To call a view, its URL needs to be mapped. We need at **URLconf**
+
+# Models 
+- A model is a single, definitive source of truth about data
+- Contains essential fields and behvaiors of data
+- Goal: define data n one place, automatically derive things fromit
