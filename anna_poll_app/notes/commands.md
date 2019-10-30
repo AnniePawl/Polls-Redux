@@ -19,8 +19,13 @@
 6. Creates tables in database
 - `$python manage.py migrate`
 
-7. Includ app in project by refererncing config class in INSTALLED_APP setting 
+7. Include app in project by refererncing config class in INSTALLED_APP setting 
 - `$python3 manage.py makemigrations polls(app)`
+
+8. Create an Admin User
+- `$python3 manage.py createsuperuser`
+
+
 
 - `python manage.py check` checks for any problems in project without making migrations or touching db
 
