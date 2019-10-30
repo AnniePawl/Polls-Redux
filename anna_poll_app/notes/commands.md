@@ -19,9 +19,18 @@
 6. Creates tables in database
 - `$python manage.py migrate`
 
+7. Includ app in project by refererncing config class in INSTALLED_APP setting 
+- `$python3 manage.py makemigrations polls(app)`
+
+- `python manage.py check` checks for any problems in project without making migrations or touching db
+
+- `$ python manage.py sqlmigrate polls 0001`
+- ^ What does this do?
+
 ### Migrate 
 Looks a installed_apps settings and creates any necessary database tables according to database migration. 
-Migrations are entirely derived from models
+Migrations are entirely derived from models. 
+Migrations are how Django stores changes to your models and that you'd like changes stored as a migration
 
 ### Projects vs Apps 
 **Project:** Collection of configuration and apps for a particular website. Can contain multiple apps. <br>
@@ -68,7 +77,4 @@ URL delcarations for project. Table of contents
 # Views 
 To call a view, its URL needs to be mapped. We need at **URLconf**
 
-# Models 
-- A model is a single, definitive source of truth about data
-- Contains essential fields and behvaiors of data
-- Goal: define data n one place, automatically derive things fromit
+
