@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # ex: /polls/5/
     # Add path calls for new views!
+    # detail() method will run and display whatever ID you provide in URL
     path('<int:question_id>/', views.detail, name='detail'),
     # ex: /polls/5/results/
     path('<int:question_id>/results/', views.results, name='results'),

@@ -26,7 +26,6 @@
 - `$python3 manage.py createsuperuser`
 
 
-
 - `python manage.py check` checks for any problems in project without making migrations or touching db
 
 - `$ python manage.py sqlmigrate polls 0001`
