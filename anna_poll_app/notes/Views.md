@@ -34,3 +34,34 @@ Django will load **mysite.urls**. Finds varaible named **url patterns** and trav
 - *Question Index Page* - Displays latest few questions
 - *Question Detail Page*- Displays question text 
 - *Day-Based Archive*- Displays all page entires on given day
+
+
+## Class-Based View
+**Pros**
+- Code resusability (can be inherited by other views)
+- DRY, reduced code duplication
+- Code Extendability, can include more funcionality like Mixins
+- Code structuring
+- Built in genertic class-based views
+
+## Function Based View
+**Pros**
+- simple to implement 
+- easy to read
+- explicit code flow 
+- good for one-off of specialized functionality 
+**Cons**
+- Hard to extend and resuse 
+- Handling of HTTP methods 
+
+### View 
+Master class-based view. All other views inherit from this
+
+## ListView 
+A page representing list of objects
+
+## Detail View 
+Contains object that view is operating upon
+
+## Template View
+Renders a given template, with context from URL
