@@ -11,3 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 ```
+
+
+### Namespacing 
+Add namespaces to URLconfs to help Django differenciate between URL names
