@@ -27,8 +27,23 @@ def index(request):
 # Make sure to wire new views into `polls.urls` by adding path calls
 
 
+# This view raises an error if a question with requested ID does not exist
+# V3 w/ shorcut get_object_or_404
 def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+
+# (V2)
+# def detail(request, question_id):
+#     try:
+#         question = Question.objects.get(pk=question_id)
+#     except Question.DoesNotExist:
+#         raise Http404("Question does not exist")
+#     return render(request, 'polls/detail.html', {'question': question})
+
+# Simlple Ex w/o error control (V1)
+# def detail(request, question_id):
+#     return HttpResponse("You're looking at question %s." % question_id)
 
 
 def results(request, question_id):
