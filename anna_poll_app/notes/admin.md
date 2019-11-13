@@ -1,7 +1,6 @@
 ## Django Admin 
 Automatically generates admin interface for models 
 
-
 ## Creating Admin user 
 1. Run command `$python3 manage.py createsuperuser`
 2. Answer the prompts

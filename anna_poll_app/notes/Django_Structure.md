@@ -1,4 +1,4 @@
-## Django App Structure 
+## Django App Structure
 
 ``` mysite/
     manage.py
@@ -8,6 +8,13 @@
         urls.py
         wsgi.py
 ``` 
+
+## Apps vs. Projects 
+Each app in Django consists of a python package that follows a certain convention. <br/>
+**Project:** A collection of configurations and apps for a particular website. **A project can contian multiple apps**
+**App:** A web application that does something, e.g a database of public records or a poll app. <br/>
+
+
 
 ### Outer `mysite/`
 Root directory that contains project. Can be named anything 

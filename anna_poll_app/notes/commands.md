@@ -14,7 +14,7 @@
 
 5. Create apps within project
 -  Make sure you are in same directory as manage.py
-- `$python3 manage.py startapp app name`
+- `$python3 manage.py startapp appname`
 
 6. Creates tables in database
 - `$python manage.py migrate`

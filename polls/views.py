@@ -1,13 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
 from .models import Question
+
+# This code loads template called poll/index/html and passes it a context. The context in a dictionary mapping template variable names to Python objects
+
+# Refactored Index using render() shortcut
+# No need to impor loader and HttpResponse now
 
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
-    # User render() as shortcut. Takes request object as first arg
     return render(request, 'polls/index.html', context)
+
+
+# def index(request):
+#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
+#     template = loader.get_template('polls/index.html')
+#     context = {
+#         'latest_question_list': latest_question_list,
+#     }
+#     return HttpResponse(template.render(context, request))
 
 # Create your views here.
 # Make sure to wire new views into `polls.urls` by adding path calls
