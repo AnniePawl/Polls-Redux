@@ -24,7 +24,11 @@ Everything starts w/ form class. Import forms module from Django. `from  django 
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
 ```
+###  FormView vs. CreateView
+**FormView:** Use when you need a form on a page adn want to perform a certain action when valid form is submitted- like have a contact us form and sending an email on form submission. </br>
+**CreateView:** Use when you want to insert a model instance in a database on form submission </br>
 
+**Meta Class**
 ### Form Example
 ``` <form action='/submit' method='GET'>
 Type your name here: <input type='text>
