@@ -1,0 +1,19 @@
+.question_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+li a {
+  color: purple;
+  text-decoration: none;
+  list-style:none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  /* text-transform: uppercase; */
+}
+
+body {
+  background: white url("images/pastel.jpg") no-repeat;
+}

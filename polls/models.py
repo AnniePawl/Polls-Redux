@@ -2,8 +2,6 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-# Each class is a model?
-
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -14,10 +12,9 @@ class Question(models.Model):
         return self.question_text
     # Add custom date/time method
 
-
-def was_published_recently(self):
-    now = timezone.now()
-    return now - datetime.timedelta(days=1) <= self.pub_date <= now
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
 class Choice(models.Model):
