@@ -1,12 +1,24 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-  rel="stylesheet">
+<!-- STYLES -->
+{% load static %}
 
-<h1>{{ question.question_text }}</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 
-<ul>
-  {% for choice in question.choice_set.all %}
-  <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-  {% endfor %}
-</ul>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+  rel="stylesheet"
+/>
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<div class="content_container">
+  <h1>{{ question.question_text }}</h1>
+
+  <ul>
+    {% for choice in question.choice_set.all %}
+    <li>
+      {{ choice.choice_text }} -- {{ choice.votes }} vote{{
+      choice.votes|pluralize }}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+</div>

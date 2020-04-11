@@ -1,19 +1,34 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-  rel="stylesheet">
+<!-- STYLES -->
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+  rel="stylesheet"
+/>
 <!-- This template displays a radio button for each question, the value is associated with an ID -->
 
 <!--Each radio button is a choice. When someone selects a choice and submits form, POST dad choice=# -->
+<div class="content_container">
+  <h1>{{ question.question_text }}</h1>
 
+  {% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+  {% endif %}
 
-<h1>{{ question.question_text }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="{% url 'polls:vote' question.id %}" method="post">
-  {% csrf_token %}
-  {% for choice in question.choice_set.all %}
-  <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-  <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-  {% endfor %}
-  <input type="submit" value="Vote">
-</form>
+  <form class="form" action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %} {% for choice in question.choice_set.all %}
+    <input
+      type="radio"
+      name="choice"
+      id="choice{{ forloop.counter }}"
+      value="{{ choice.id }}"
+    />
+    <label class="choice" for="choice{{ forloop.counter }}"
+      >{{ choice.choice_text }}</label
+    ><br />
+    {% endfor %}
+    <input class="button" type="submit" value="Vote" />
+  </form>
+</div>
