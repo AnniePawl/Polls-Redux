@@ -1,38 +1,29 @@
-# Views
+# View Layer
 
-A view is a "type" of web page that generally servers a specific function and has a specific template. <br>
+Views encapsulate the logic responsible for processing a user's request and returning response. Each view is responnsible for doing one of two things: returning an HttpResponse object, or raising an exception(e.g 404). <br>
+
+## The Basics
 
 - Web pages and other content are delivered with views
 - Each view is depicted by a single function
-- Each view responsible for two things:
-  - Returning HttpResponse Object containing content of requested page
-  - Raising a exception like Http404
-- Django will choose a view by examining the URL that's requested
-- All Django wants is n **HTTPResponse**
+- Each view responsible for two things: returning HttpResponse object or raising an error
+- Django will choose a view by examining the URL that is requested
+- All Django wants is an HTTPResponse
 
-## Process
+**View:** Master class-based view. All other views inherit from this <br>
+**ListView:** A page representing list of objects<br>
+**Detail View:** Contains object that view is operating upon<br>
+**Template View:** Renders a given template, with context from URL<br>
+**Class-based Views:** Code resusability (can be inherited by other views), DRY (reduced code duplication), Code Extendability (can include more funcionality like Mixins), Code structuring<br>
+**Function-based Views:** Simple to implement, easy to read, explicit code flow, good for one-off of specialized functionality, harder to extend and reuse
 
-1. Add new view to `view.py`
+## View Example:
 
-- ```def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
-  ```
+**mysite/news/views.py**
 
-2. Wire new view into `poll.urls` module by adding path calls
-
-- ```# ex: /polls/5/
-    path('<int:question_id>/', views.detail, name='detail')
-  ```
-
-### Example
-
-If someone types URL `/polls/34 -> <br>
-Django will load **mysite.urls**. Finds varaible named **url patterns** and traverses the patterns in order.
-
-- Finds match at `polls/`, strips off matching text "polls/" and returns remaining text ("34") to polls.urls URL conf for further processing
-
-```from django.shortcuts import render
-
+```python
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound
 from .models import Article
 
 def year_archive(request, year):
@@ -41,51 +32,24 @@ def year_archive(request, year):
     return render(request, 'news/year_archive.html', context)
 ```
 
-## URL Pattern
+## Mapping URLs to Views
 
-**/newsarchive/<year>/<month>/**
-**Blog App Views Example**
+To display a view at a specific URL, you need to create a **URLconf**. Add **namespaces** to URLconfs to help Django differenciate between URL names.
 
-- _Blog Homepage_ - displays latest few entries
-- _Comment Action_- handles posting comments to a given entry
-- _Question Index Page_ - Displays latest few questions
-- _Question Detail Page_- Displays question text
-- _Day-Based Archive_- Displays all page entires on given day
+```python
+from django.urls import path
 
-## Class-Based View
+from . import views
 
-**Pros**
+urlpatterns = [
+    path('articles/2003/', views.special_case_2003),
+    path('articles/<int:year>/', views.year_archive),
+    path('articles/<int:year>/<int:month>/', views.month_archive),
+    path('articles/<int:year>/<int:month>/<slug:slug>/', views.article_detail),
+]
+```
 
-- Code resusability (can be inherited by other views)
-- DRY, reduced code duplication
-- Code Extendability, can include more funcionality like Mixins
-- Code structuring
-- Built in genertic class-based views
+When a user requests a page, Django will load **mysite.urls** and looks for the variable **url patterns**. Then it traverses the patterns in order and stops are first match. When it finds a match, Django imports and calls the given view. If there is no match, it will return an error.<br>
 
-## Function Based View
-
-**Pros**
-
-- simple to implement
-- easy to read
-- explicit code flow
-- good for one-off of specialized functionality
-  **Cons**
-- Hard to extend and resuse
-- Handling of HTTP methods
-
-### View
-
-Master class-based view. All other views inherit from this
-
-## ListView
-
-A page representing list of objects
-
-## Detail View
-
-Contains object that view is operating upon
-
-## Template View
-
-Renders a given template, with context from URL
+- You should **always use include() when you include other url patterns**
+- `path() function` is passed four arguments, two required (route and view), and two optional(kwargs and naeme)

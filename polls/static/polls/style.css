@@ -30,11 +30,26 @@ li a {
   font-size: 22px;
 }
 
+li a:hover {
+  color: orange;
+}
+
 body {
   height: 100vh;
   width: 100vw;
   background: lightcyan;
   /* background: white url("images/pastel.jpg") no-repeat; */
+}
+
+a.vote_again {
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+a.vote_again:hover {
+  color: orange;
 }
 
 .button {
@@ -44,6 +59,10 @@ body {
   background-color: mediumturquoise;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+}
+
+.button:hover {
+  background-color: orange;
 }
 
 .choice {
