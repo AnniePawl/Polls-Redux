@@ -1,15 +1,9 @@
-<!-- STYLES -->
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-  rel="stylesheet"
-/>
+{% extends 'polls/base.html' %}
 <!-- This template displays a radio button for each question, the value is associated with an ID -->
 
 <!--Each radio button is a choice. When someone selects a choice and submits form, POST dad choice=# -->
+
+{% block content %}
 <div class="content_container">
   <h1>{{ question.question_text }}</h1>
 
@@ -32,3 +26,4 @@
     <input class="button" type="submit" value="Vote" />
   </form>
 </div>
+{% endblock content %}

@@ -1,13 +1,7 @@
-<!-- STYLES -->
-{% load static %}
+{% extends 'polls/base.html' %}
+<!-- Block content -->
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-  rel="stylesheet"
-/>
-
+{% block content %}
 <div class="content_container">
   <h1>{{ question.question_text }}</h1>
 
@@ -24,3 +18,5 @@
     >Vote again</a
   >
 </div>
+
+{% endblock content %}
