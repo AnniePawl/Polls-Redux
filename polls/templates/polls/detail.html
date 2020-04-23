@@ -7,21 +7,18 @@
 <div class="content_container">
   <h1>{{ question.question_text }}</h1>
 
+  {% if question.author %}
+  <p>Author: {{ question.author.username }}</p>
+  {% endif %}
+
   {% if error_message %}
   <p><strong>{{ error_message }}</strong></p>
   {% endif %}
 
   <form class="form" action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %} {% for choice in question.choice_set.all %}
-    <input
-      type="radio"
-      name="choice"
-      id="choice{{ forloop.counter }}"
-      value="{{ choice.id }}"
-    />
-    <label class="choice" for="choice{{ forloop.counter }}"
-      >{{ choice.choice_text }}</label
-    ><br />
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label class="choice" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
     {% endfor %}
     <input class="button" type="submit" value="Vote" />
   </form>

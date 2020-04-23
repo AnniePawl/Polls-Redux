@@ -2,22 +2,30 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+  rel="stylesheet" />
 <!-- If user is logged on, say Hello -->
 {% if request.user.is_authenticated %}
 <p>
   Hello, {{ request.user.username }}!
 </p>
+
+{% else %}
+<a href="/registration/signup">Sign Up</a>
+
+
+{% endif %}
+
+<!-- User can create a new poll if authenticated-->
+{% if request.user.is_authenticated %}
+
+<a href="/polls/create">New Poll</a>
 {% endif %}
 
 
 <!-- If user is Not logged on, Redirect them to signup -->
 <!-- TODO -->
 
-<a href="/registration/signup">Sign Up</a>
 
 <p align="right">
   <a href="/accounts/login">Login</a>
