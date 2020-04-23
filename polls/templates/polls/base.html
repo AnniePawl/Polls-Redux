@@ -6,12 +6,18 @@
   href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
   rel="stylesheet"
 />
-
+<!-- If user is logged on, say Hello -->
 {% if request.user.is_authenticated %}
 <p>
   Hello, {{ request.user.username }}!
 </p>
 {% endif %}
+
+
+<!-- If user is Not logged on, Redirect them to signup -->
+<!-- TODO -->
+
+<a href="/registration/signup">Sign Up</a>
 
 <p align="right">
   <a href="/accounts/login">Login</a>
