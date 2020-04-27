@@ -6,6 +6,7 @@ from django.views import generic
 from .models import Choice, Question
 from django.utils import timezone
 from .forms import QuestionCreateForm
+from .forms import ChoiceCreateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # This code loads template called poll/index/html and passes it a context. The context in a dictionary mapping template variable names to Python objects
@@ -29,11 +30,24 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
-    def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
-        return Question.objects.filter(pub_date__lte=timezone.now())
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['choice_form'] = ChoiceCreateForm()
+        return context
+
+    def post(self, request, pk):
+        form = ChoiceCreateForm(request.POST)
+        if form.is_valid:
+            choice = form.save(commit=False)
+            choice.question = Question.objects.get(pk=pk)
+            choice.save()
+            return HttpResponseRedirect(reverse('polls:detail', args=[pk]))
+        # else if form is not valid
+        context = {
+            'choice_form': form,
+            'question': Question.objects.get(pk=pk)
+        }
+        return render(request, 'polls/detail.html', context)
 
 
 class ResultsView(generic.DetailView):
