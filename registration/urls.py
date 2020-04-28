@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
-app_name = 'registration'
-urlpatterns = [
-    path('registration:signup/', views.SignUpView.as_view(), name='signup'),
+# What is going wrong here?
+# Which part needs to be 'registration:signup'
 
+
+urlpatterns = [
+    path('signup/', views.SignUpView.as_view(), name='signup'),
 ]
